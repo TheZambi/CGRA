@@ -1,3 +1,8 @@
+/**
+ * MyTangram
+ * @constructor
+ * @param scene - Reference to MyScene object
+ */
 class MyTangram extends CGFobject {
 
 	constructor(scene) {
@@ -78,6 +83,7 @@ class MyTangram extends CGFobject {
 
         this.paralelogram.display();
 
+        this.scene.popMatrix();
 
     }
 }
