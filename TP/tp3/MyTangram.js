@@ -61,7 +61,7 @@ class MyTangram extends CGFobject {
         this.big_triangle = new CGFappearance(this.scene);
         this.big_triangle.setAmbient(0.5,0.85,1,1.0);
         this.big_triangle.setDiffuse(0.5,0.85,1,1.0);
-        this.big_triangle.setSpecular(0.5,0.85,1,1.0);
+        this.big_triangle.setSpecular(1,1,1,1.0);
         this.big_triangle.setShininess(10.0);
 
         this.big_triangle.apply();
@@ -75,7 +75,7 @@ class MyTangram extends CGFobject {
         this.triangle_color2 = new CGFappearance(this.scene);
         this.triangle_color2.setAmbient(1,0.6,0,1.0);
         this.triangle_color2.setDiffuse(1,0.6,0,1.0);
-        this.triangle_color2.setSpecular(1,0.6,0,1.0);
+        this.triangle_color2.setSpecular(1,1,1,1.0);
         this.triangle_color2.setShininess(10.0);
         this.triangle_color2.apply();
 
@@ -93,7 +93,7 @@ class MyTangram extends CGFobject {
         this.triangle_color = new CGFappearance(this.scene);
         this.triangle_color.setAmbient(1,0.79,0.85,1.0);
         this.triangle_color.setDiffuse(1,0.79,0.85,1.0);
-        this.triangle_color.setSpecular(1,0.79,0.85,1.0);
+        this.triangle_color.setSpecular(1,1,1,1.0);
         this.triangle_color.setShininess(10.0);
         this.triangle_color.apply();
         
@@ -111,7 +111,7 @@ class MyTangram extends CGFobject {
         this.triangle_color3 = new CGFappearance(this.scene);
         this.triangle_color3.setAmbient(1,0,0,1.0);
         this.triangle_color3.setDiffuse(1,0,0,1.0);
-        this.triangle_color3.setSpecular(1,0,0,1.0);
+        this.triangle_color3.setSpecular(1,1,1,1.0);
         this.triangle_color3.setShininess(10.0);
         this.triangle_color3.apply();
         
@@ -126,7 +126,7 @@ class MyTangram extends CGFobject {
         this.small_triangle_2_color = new CGFappearance(this.scene);
         this.small_triangle_2_color.setAmbient(0.6,0.2,0.6,1.0);
         this.small_triangle_2_color.setDiffuse(0.6,0.2,0.6,1.0);
-        this.small_triangle_2_color.setSpecular(0.6,0.2,0.6,1.0);
+        this.small_triangle_2_color.setSpecular(1,1,1,1.0);
         this.small_triangle_2_color.setShininess(10.0);
         this.small_triangle_2_color.apply();
 
@@ -141,7 +141,7 @@ class MyTangram extends CGFobject {
         this.paralelogram_color = new CGFappearance(this.scene);
         this.paralelogram_color.setAmbient(1,1,0,1.0);
         this.paralelogram_color.setDiffuse(1,1,0,1.0);
-        this.paralelogram_color.setSpecular(1,1,0,1.0);
+        this.paralelogram_color.setSpecular(1,1,1,1.0);
         this.paralelogram_color.setShininess(10.0);
         this.paralelogram_color.apply();
 
