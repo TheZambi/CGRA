@@ -35,11 +35,7 @@ class MyDiamond extends CGFobject {
 		this.initGLBuffers();
 	}
 	updateBuffers(complexity){
-        
 
-        // reinitialize buffers
-        this.initBuffers();
-        this.initNormalVizBuffers();
     }
 }
 

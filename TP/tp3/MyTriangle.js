@@ -41,10 +41,6 @@ class MyTriangle extends CGFobject {
 		
 	}
 	updateBuffers(complexity){
-        
-
-        // reinitialize buffers
-        this.initBuffers();
-        this.initNormalVizBuffers();
+  
     }
 }
