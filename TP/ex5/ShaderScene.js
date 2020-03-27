@@ -87,7 +87,10 @@ class ShaderScene extends CGFscene {
 		this.testShaders[4].setUniformsValues({ uSampler2: 1 });
 		this.testShaders[5].setUniformsValues({ uSampler2: 1 });
 		this.testShaders[6].setUniformsValues({ uSampler2: 1 });
+
 		this.testShaders[11].setUniformsValues({ uSampler2: 1 });
+		this.testShaders[11].setUniformsValues({ timeFactor: 0 });
+
 		this.testShaders[6].setUniformsValues({ timeFactor: 0 });
 
 
@@ -188,6 +191,8 @@ class ShaderScene extends CGFscene {
 		// only shader 6 is using time factor
 		if (this.selectedExampleShader == 6)
 			this.testShaders[6].setUniformsValues({ timeFactor: t / 100 % 1000 });
+		if (this.selectedExampleShader == 11)
+			this.testShaders[11].setUniformsValues({ timeFactor: t / 100 % 1000 });
 	}
 
 	// main display function
@@ -235,10 +240,16 @@ class ShaderScene extends CGFscene {
 		else {
 			this.pushMatrix();
 			
+			var aux = this.texture2.gl;
+			aux.texParameteri(aux.TEXTURE_2D, aux.TEXTURE_WRAP_T, aux.REPEAT);
+			aux.texParameteri(aux.TEXTURE_2D, aux.TEXTURE_WRAP_S, aux.REPEAT);
+
 			this.scale(25, 25, 25);
 			this.objects[1].display();
 			
 			this.popMatrix();
+
+
 		}
 
 		// restore default shader (will be needed for drawing the axis in next frame)
