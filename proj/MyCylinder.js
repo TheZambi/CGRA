@@ -29,7 +29,7 @@ class MyCylinder extends CGFobject {
                 this.texCoords.push(i/this.nFaces,j);
             }
         }
-        var lastIndice = i;
+        //var lastIndice = i;
 
         for (var i = 0; i < this.nFaces * 2 - 1; i += 2) {
             this.indices.push(i, i + 1, i + 3,
@@ -38,17 +38,17 @@ class MyCylinder extends CGFobject {
                 i + 3, i, i + 2);
         }
 
-        this.vertices.push(0, 0, 0,
-                           0, 1, 0);
-        this.normals.push(0,-1,0,
-                          0,1,0);
+        // this.vertices.push(0, 0, 0,
+        //                    0, 1, 0);
+        // this.normals.push(0,-1,0,
+        //                   0,1,0);
 
-        for (var i = 0; i < this.nFaces*2; i += 1) {
-            this.indices.push(i, lastIndice, i + 2,
-                              i + 2, lastIndice, i);
-            this.indices.push(i + 1, lastIndice + 1, i + 3,
-                              i + 3, lastIndice+1, i+1);
-        }
+        // for (var i = 0; i < this.nFaces*2; i += 1) {
+        //     this.indices.push(i, lastIndice, i + 2,
+        //                       i + 2, lastIndice, i);
+        //     this.indices.push(i + 1, lastIndice + 1, i + 3,
+        //                       i + 3, lastIndice+1, i+1);
+        // }
 
 
 

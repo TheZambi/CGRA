@@ -66,7 +66,7 @@ class ShaderScene extends CGFscene {
 
 		
 
-		// shaders initialization
+		// shaders in  itialization
 
 		this.testShaders = [
 			new CGFshader(this.gl, "shaders/flat.vert", "shaders/flat.frag"),
