@@ -21,12 +21,13 @@ class MyCylinder extends CGFobject {
         this.indices = [];
         this.normals = [];
         this.texCoords = [];
+        
         var i = 0;
         for (; i <= this.nFaces; i += 1) {
             for (var j = 0; j <= 1; j += 1) {
                 this.vertices.push(Math.cos(2 * Math.PI * i / this.nFaces), j, Math.sin(2 * Math.PI * i / this.nFaces));
                 this.normals.push(Math.cos(2 * Math.PI * i / this.nFaces), 0, Math.sin(2 * Math.PI * i / this.nFaces));
-                this.texCoords.push(i/this.nFaces,j);
+                this.texCoords.push((this.nFaces-i)/this.nFaces,1-j);
             }
         }
         //var lastIndice = i;
