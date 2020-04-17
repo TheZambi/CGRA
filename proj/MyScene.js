@@ -34,6 +34,7 @@ class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this,50);
         this.unitQuad = new MyUnitCubeQuad(this);
+        this.vehicle = new MyVehicle(this,4,1);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -84,10 +85,12 @@ class MyScene extends CGFscene {
         //this.incompleteSphere.display();
 
         //this.cylinder.display();
-        this.pushMatrix();
-        this.scale(20,20,20);
-        this.unitQuad.display();
-        this.popMatrix();
+        // this.pushMatrix();
+        // this.scale(20,20,20);
+        // this.unitQuad.display();
+        // this.popMatrix();
+
+        this.vehicle.display();
 
 
         // ---- END Primitive drawing section
