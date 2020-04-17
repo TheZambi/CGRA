@@ -12,28 +12,24 @@ class MyUnitCubeQuad extends CGFobject {
         this.bottom = new CGFappearance(this.scene);
         this.bottom.setDiffuse(0.6,0.6,0.6,1.0);
         this.bottom.setSpecular(0.6,0.6,0.6,1.0);
-        this.bottom.setAmbient(1.0, 1.0, 1.0, 1.0);
         this.bottom.setShininess(1.0);
         this.bottom.loadTexture('images/split_cubemap/bottom.png');
 
         this.back = new CGFappearance(this.scene);
         this.back.setDiffuse(0.6,0.6,0.6,1.0);
         this.back.setSpecular(0.6,0.6,0.6,1.0);
-        this.back.setAmbient(1.0, 1.0, 1.0, 1.0);
         this.back.setShininess(1.0);
         this.back.loadTexture('images/split_cubemap/back.png');
 
         this.top = new CGFappearance(this.scene);
         this.top.setDiffuse(0.6,0.6,0.6,1.0);
         this.top.setSpecular(0.6,0.6,0.6,1.0);
-        this.top.setAmbient(1.0, 1.0, 1.0, 1.0);
         this.top.setShininess(1.0);
         this.top.loadTexture('images/split_cubemap/top.png');
 
         this.front = new CGFappearance(this.scene);
         this.front.setDiffuse(0.6,0.6,0.6,1.0);
         this.front.setSpecular(0.6,0.6,0.6,1.0);
-        this.front.setAmbient(1.0, 1.0, 1.0, 1.0);
         this.front.setShininess(1.0);
         this.front.loadTexture('images/split_cubemap/front.png');
     
@@ -41,7 +37,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.right = new CGFappearance(this.scene);
         this.right.setDiffuse(0.6,0.6,0.6,1.0);
         this.right.setSpecular(0.6,0.6,0.6,1.0);
-        this.right.setAmbient(1.0, 1.0, 1.0, 1.0);
         this.right.setShininess(1.0);
         this.right.loadTexture('images/split_cubemap/right.png');
 
@@ -49,7 +44,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.left = new CGFappearance(this.scene);
         this.left.setDiffuse(0.6,0.6,0.6,1.0);
         this.left.setSpecular(0.6,0.6,0.6,1.0);
-        this.left.setAmbient(1.0, 1.0, 1.0, 1.0);
         this.left.setShininess(1.0);
         this.left.loadTexture('images/split_cubemap/left.png');
 

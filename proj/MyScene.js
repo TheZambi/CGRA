@@ -42,6 +42,7 @@ class MyScene extends CGFscene {
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.lights[0].setAmbient(0.25,0.25,0.25,1.0);
         this.lights[0].enable();
         this.lights[0].update();
     }
@@ -85,12 +86,12 @@ class MyScene extends CGFscene {
         //this.incompleteSphere.display();
 
         //this.cylinder.display();
-        // this.pushMatrix();
-        // this.scale(20,20,20);
-        // this.unitQuad.display();
-        // this.popMatrix();
+        this.pushMatrix();
+        this.scale(20,20,20);
+        this.unitQuad.display();
+        this.popMatrix();
 
-        this.vehicle.display();
+        //this.vehicle.display();
 
 
         // ---- END Primitive drawing section
