@@ -10,6 +10,8 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
+        this.speedFactor=0.1;
+        this.scaleFactor=1;
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -55,11 +57,48 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+
+    checkKeys() {
+        var text = "Keys pressed: ";
+        var keysPressed = false;
+        // Check for key codes e.g. in https://keycode.info/
+        if (this.gui.isKeyPressed("KeyW")) {
+            text += " W ";
+            keysPressed = true;
+            this.vehicle.accelarate(this.speedFactor);
+        }
+        if (this.gui.isKeyPressed("KeyS")) {
+            text += " S ";
+            keysPressed = true;
+            this.vehicle.accelarate(-1*this.speedFactor);
+        }
+        if (this.gui.isKeyPressed("KeyA")) {
+            text += " A ";
+            keysPressed = true;
+            this.vehicle.turn(Math.PI/10);
+        }
+        if (this.gui.isKeyPressed("KeyD")) {
+            text += " D ";
+            keysPressed = true;
+            this.vehicle.turn(-Math.PI/10);
+        }
+        if (this.gui.isKeyPressed("KeyR")) {
+            text += " R ";
+            keysPressed = true;
+            this.vehicle.reset();
+        }
+        if (keysPressed)
+            console.log(text);
+    }
+
+
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
+        this.checkKeys();
     }
 
+    
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -86,12 +125,17 @@ class MyScene extends CGFscene {
         //this.incompleteSphere.display();
 
         //this.cylinder.display();
+  
+        
+        this.vehicle.display(this.scaleFactor);
+    
+
         this.pushMatrix();
-        this.scale(20,20,20);
+        this.scale(40,40,40);
         this.unitQuad.display();
         this.popMatrix();
 
-        //this.vehicle.display();
+        
 
 
         // ---- END Primitive drawing section
