@@ -37,7 +37,6 @@ class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this,50);
         this.unitQuad = new MyUnitCubeQuad(this);
         this.vehicle = new MyVehicle(this,20,5);
-
         //Objects connected to MyInterface
         this.displayAxis = true;
     }
@@ -89,6 +88,9 @@ class MyScene extends CGFscene {
         }
         if (keysPressed)
             console.log(text);
+        else {
+            this.vehicle.rudder_orient = 0;
+        }
     }
 
 
@@ -129,6 +131,7 @@ class MyScene extends CGFscene {
         
         this.vehicle.display(this.scaleFactor);
     
+        
 
         this.pushMatrix();
         this.scale(40,40,40);

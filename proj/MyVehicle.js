@@ -1,5 +1,5 @@
 /**
-* MyPyramid
+* MyVehicle
 * @constructor
 */
 class MyVehicle extends CGFobject {
@@ -7,16 +7,27 @@ class MyVehicle extends CGFobject {
         super(scene);
         this.sphere = new MySphere(this.scene,slices,stacks);
         this.cylinder = new MyCylinder(this.scene,10);
+        this.rudder = new MyRudder(this.scene);
+        this.propeller = new MyPropeller(this.scene, slices, stacks);
 
         this.speed=0;
-        this.position = [0,0,0]; //change y to 10 after testing
+        this.position = [0,10,0]; //change y to 10 after testing
         this.orientation = 0;
+        this.rudder_orient = 0;
         
     }
     
     turn(val)
     {
         this.orientation += val;
+
+        if (val > 0) {
+            this.rudder_orient = -1;
+        }
+        else if (val < 0){
+            this.rudder_orient = 1;
+        }
+      
     }
 
     accelarate(val)
@@ -30,15 +41,15 @@ class MyVehicle extends CGFobject {
     {
         var directionVector = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
 
-        this.position[0] = this.position[0] + directionVector[0] * this.speed;
-        this.position[1] = this.position[1] + directionVector[1] * this.speed;
-        this.position[2] = this.position[2] + directionVector[2] * this.speed;
+        // this.position[0] = this.position[0] + directionVector[0] * this.speed;
+        // this.position[1] = this.position[1] + directionVector[1] * this.speed;
+        // this.position[2] = this.position[2] + directionVector[2] * this.speed;
     }
 
     reset()
     {
         this.speed=0;
-        this.position = [0,0,0];
+        this.position = [0,10,0];
         this.orientation = 0;
     }
 
@@ -58,6 +69,7 @@ class MyVehicle extends CGFobject {
     
         this.sphere.display();
         this.scene.popMatrix();
+        
         //Spheres on the edge of the Cabin
         this.scene.pushMatrix();
 
@@ -65,25 +77,82 @@ class MyVehicle extends CGFobject {
         this.scene.pushMatrix();
         
         this.scene.translate(0,0,-0.375);
-        this.scene.scale(0.121,0.121,0.121);
+        this.scene.scale(0.181,0.181,0.181);
         
         this.sphere.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0,0,0.485);
-        this.scene.scale(0.121,0.121,0.121);
+        this.scene.translate(0,0,0.60);
+        this.scene.scale(0.181,0.181,0.181);
         this.sphere.display();
         this.scene.popMatrix();
 
         //Cabin
         this.scene.translate(0,0,-0.375);
         this.scene.rotate(Math.PI/2,1,0,0);
-        this.scene.scale(0.125,0.85,0.125);
+        this.scene.scale(0.190,0.95,0.190);
 
       
         this.cylinder.display();
         this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.rotate(Math.PI/16*this.rudder_orient, 0, 1,0);
+
+        //Upper Rudder
+        this.scene.pushMatrix();
+        this.scene.scale(1.4,1.4,1.4);
+        this.scene.translate(0,0.3,-1.1);
+        this.rudder.display();
         this.scene.popMatrix();
+
+        //Lower Rudder
+        this.scene.pushMatrix();
+        this.scene.scale(1.4,1.4,1.4);
+        this.scene.translate(0,-0.3,-1.1);
+        this.scene.rotate(Math.PI, 0, 0, 1);
+        this.rudder.display();
+        this.scene.popMatrix();
+
+        this.scene.popMatrix();
+
+        //Left Rudder
+        this.scene.pushMatrix();
+        this.scene.scale(1.4,1.4,1.4);
+        this.scene.translate(-0.3,0,-1.1);
+        this.scene.rotate(Math.PI/2, 0, 0, 1);
+        this.rudder.display();
+        this.scene.popMatrix();
+
+        //Right Rudder
+        this.scene.pushMatrix();
+        this.scene.scale(1.4,1.4,1.4);
+        this.scene.translate(0.3,0,-1.1);
+        this.scene.rotate(Math.PI/2, 0, 0, -1);
+        this.rudder.display();
+        this.scene.popMatrix();
+
+        this.propeller.prop_speed += this.speed/20.0;
+    
+        console.log(this.propeller.prop_speed);
+        //Left Engine
+        this.scene.pushMatrix();
+        this.scene.translate(-0.151, -1.05, -0.5);
+        this.propeller.display();
+        this.scene.popMatrix();
+
+        //Right Engine
+        this.scene.pushMatrix();
+        this.scene.translate(0.151, -1.05, -0.5);
+        this.propeller.display();
+        this.scene.popMatrix();
+
+
+        this.scene.popMatrix();
+
+    
+        
+
     }
 }
