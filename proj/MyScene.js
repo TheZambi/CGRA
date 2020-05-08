@@ -57,7 +57,7 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
-    checkKeys() {
+    checkKeys(val) {
         var text = "Keys pressed: ";
         var keysPressed = false;
         // Check for key codes e.g. in https://keycode.info/
@@ -86,18 +86,25 @@ class MyScene extends CGFscene {
             keysPressed = true;
             this.vehicle.reset();
         }
+        if (this.gui.isKeyPressed("KeyP")) {
+            text += " P ";
+            keysPressed = true;
+            this.vehicle.startAutoPilot(val);
+        }
         if (keysPressed)
             console.log(text);
         else {
             this.vehicle.rudder_orient = 0;
         }
+
     }
 
 
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
-        this.checkKeys();
+        this.checkKeys(t);
+        this.vehicle.update(t);
     }
 
     

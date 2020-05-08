@@ -10,13 +10,43 @@ class MyVehicle extends CGFobject {
         this.rudder = new MyRudder(this.scene);
         this.propeller = new MyPropeller(this.scene, slices, stacks);
 
+        this.auto = false;
+        this.pilotAngle = 0;
+        this.angularSpeed = Math.PI*2 / 5;
+        this.previousTime = 0;
+        this.center = [0,0,0];
         this.speed=0;
-        this.position = [0,10,0]; //change y to 10 after testing
+        this.position = [0,10,0];
         this.orientation = 0;
         this.rudder_orient = 0;
         
     }
     
+    startAutoPilot(t)
+    {
+        if(!this.auto){
+            this.auto = true;
+            this.previousTime = t;
+            this.pilotAngle = this.orientation - Math.PI/2;
+
+            var directionVector = [Math.sin(this.orientation+Math.PI/2), 0, Math.cos(this.orientation+Math.PI/2)];
+
+            this.center[0] = this.position[0] + 5 * directionVector[0];
+            this.center[1] = 10;
+            this.center[2] = this.position[2] + 5 * directionVector[2];
+        }
+        else{
+            this.auto = false;
+            this.previousTime = t;
+            this.center[0] = 0;
+            this.center[1] = 0;
+            this.center[2] = 0;
+            this.pilotAngle = 0;
+            this.speed = 0;
+        }
+        
+    }
+
     turn(val)
     {
         this.orientation += val;
@@ -37,13 +67,33 @@ class MyVehicle extends CGFobject {
             this.speed=0;
     }
 
-    update()
+    update(t)
     {
-        var directionVector = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
+        
+        if(!this.auto){
+            var directionVector = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
 
-        // this.position[0] = this.position[0] + directionVector[0] * this.speed;
-        // this.position[1] = this.position[1] + directionVector[1] * this.speed;
-        // this.position[2] = this.position[2] + directionVector[2] * this.speed;
+            this.position[0] = this.position[0] + directionVector[0] * this.speed;
+            this.position[1] = this.position[1] + directionVector[1] * this.speed;
+            this.position[2] = this.position[2] + directionVector[2] * this.speed;
+        }
+        else{
+            var deltaTime = (t - this.previousTime) / 1000;
+
+            var deltaAngle = deltaTime * this.angularSpeed;
+
+            this.pilotAngle = this.pilotAngle + deltaAngle;
+
+            this.orientation = this.pilotAngle + Math.PI/2;
+
+            var directionVector = [Math.sin(this.pilotAngle), 0, Math.cos(this.pilotAngle)];
+
+            this.position[0] = this.center[0] + directionVector[0] * 5;
+            this.position[1] = this.center[1] + directionVector[1] * 5;
+            this.position[2] = this.center[2] + directionVector[2] * 5;
+
+            this.previousTime = t;
+        }
     }
 
     reset()
@@ -51,10 +101,12 @@ class MyVehicle extends CGFobject {
         this.speed=0;
         this.position = [0,10,0];
         this.orientation = 0;
+        this.auto = false;
+        this.center=[0,0,0];
+        this.accelarate.pilotAngle = 0;
     }
 
     display(scaleFactor) {
-        this.update();
         //Changes causeed by the user
         this.scene.pushMatrix();
         this.scene.translate(this.position[0],this.position[1],this.position[2]);
@@ -133,9 +185,8 @@ class MyVehicle extends CGFobject {
         this.rudder.display();
         this.scene.popMatrix();
 
-        this.propeller.prop_speed += this.speed/20.0;
+        this.propeller.prop_speed += this.speed/20.0 + 0.005;
     
-        console.log(this.propeller.prop_speed);
         //Left Engine
         this.scene.pushMatrix();
         this.scene.translate(-0.151, -1.05, -0.5);
