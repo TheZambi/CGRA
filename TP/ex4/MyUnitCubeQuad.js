@@ -7,7 +7,7 @@ class MyUnitCubeQuad extends CGFobject {
 
 	constructor(scene) {
 		super(scene);
-        this.quad = new MyQuad(scene);
+        this.quad = new MyUnitCubeQuadReversed(this.scene);
         
         this.bottom = new CGFappearance(this.scene);
         this.bottom.setDiffuse(0.9,0.9,0.9,1.0);

@@ -39,6 +39,7 @@ class MyScene extends CGFscene {
         this.vehicle = new MyVehicle(this,20,5);
         this.terrain = new MyTerrain(this);
 
+        this.supply = new MySupply(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -94,6 +95,12 @@ class MyScene extends CGFscene {
             keysPressed = true;
             this.vehicle.startAutoPilot(val);
         }
+        if (this.gui.isKeyPressed("KeyL")) {
+            text += " L ";
+            keysPressed = true;
+            this.supply.drop(this.vehicle.position);
+            
+        }
         if (keysPressed)
             console.log(text);
         else {
@@ -108,6 +115,7 @@ class MyScene extends CGFscene {
         //To be done...
         this.checkKeys(t);
         this.vehicle.update(t);
+        this.supply.update();
     }
 
     
@@ -140,7 +148,10 @@ class MyScene extends CGFscene {
   
 
         this.vehicle.display(this.scaleFactor);
-    
+        
+        if (this.supply.state != SupplyStates.INACTIVE)
+            this.supply.display();
+
 
         this.pushMatrix();
         this.scale(50,50,50);
