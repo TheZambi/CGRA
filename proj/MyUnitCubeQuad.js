@@ -50,7 +50,10 @@ class MyUnitCubeQuad extends CGFobject {
     
 	}
     display()
-    {
+    {   
+        this.scene.pushMatrix();
+        this.scene.translate(0.0,0.5,0.0);
+
         //LEFT
         this.front.apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
@@ -104,6 +107,7 @@ class MyUnitCubeQuad extends CGFobject {
 
         this.quad.display();
 
+        this.scene.popMatrix();
 
 
     }

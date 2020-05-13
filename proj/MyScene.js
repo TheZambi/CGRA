@@ -37,6 +37,9 @@ class MyScene extends CGFscene {
         this.cylinder = new MyCylinder(this,50);
         this.unitQuad = new MyUnitCubeQuad(this);
         this.vehicle = new MyVehicle(this,20,5);
+        this.terrain = new MyTerrain(this);
+
+
         //Objects connected to MyInterface
         this.displayAxis = true;
     }
@@ -135,19 +138,22 @@ class MyScene extends CGFscene {
 
         //this.cylinder.display();
   
-        
+
         this.vehicle.display(this.scaleFactor);
     
-        
 
         this.pushMatrix();
-        this.scale(40,40,40);
+        this.scale(50,50,50);
         this.unitQuad.display();
         this.popMatrix();
 
+        this.pushMatrix();
+        this.setDefaultAppearance();
+
+        this.terrain.display();
+        this.popMatrix();
+
         
-
-
         // ---- END Primitive drawing section
     }
 }
