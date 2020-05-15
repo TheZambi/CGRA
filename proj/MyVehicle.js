@@ -9,6 +9,7 @@ class MyVehicle extends CGFobject {
         this.cylinder = new MyCylinder(this.scene,10);
         this.rudder = new MyRudder(this.scene);
         this.propeller = new MyPropeller(this.scene, slices, stacks);
+        this.flag = new MyFlag(this.scene);
 
         this.auto = false;
         this.pilotAngle = 0;
@@ -69,7 +70,10 @@ class MyVehicle extends CGFobject {
 
     update(t)
     {
-        
+        if(this.previousTime==0)
+            this.previousTime=t;
+        var deltaTime = (t - this.previousTime) / 1000;
+        this.previousTime = t;
         if(!this.auto){
             var directionVector = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
 
@@ -78,7 +82,8 @@ class MyVehicle extends CGFobject {
             this.position[2] = this.position[2] + directionVector[2] * this.speed;
         }
         else{
-            var deltaTime = (t - this.previousTime) / 1000;
+            this.rudder_orient = -1;
+           
 
             var deltaAngle = deltaTime * this.angularSpeed;
 
@@ -92,8 +97,9 @@ class MyVehicle extends CGFobject {
             this.position[1] = this.center[1] + directionVector[1] * 5;
             this.position[2] = this.center[2] + directionVector[2] * 5;
 
-            this.previousTime = t;
+            
         }
+        this.flag.update(deltaTime);
     }
 
     reset()
@@ -199,6 +205,8 @@ class MyVehicle extends CGFobject {
         this.propeller.display();
         this.scene.popMatrix();
 
+        //Flag
+        this.flag.display();
 
         this.scene.popMatrix();
 

@@ -32,6 +32,13 @@ class MyInterface extends CGFinterface {
         return this.activeKeys[keyCode] || false;
     }
 
+    isKeyPressedDelay(keyCode) {
+        if(this.activeKeys[keyCode] === true){
+          this.activeKeys[keyCode] = false;
+          return true;
+        }  
+          return this.activeKeys[keyCode] || false;
+     }
 
     init(application) {
         // call CGFinterface init

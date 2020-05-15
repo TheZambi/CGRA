@@ -39,7 +39,13 @@ class MyScene extends CGFscene {
         this.vehicle = new MyVehicle(this,20,5);
         this.terrain = new MyTerrain(this);
 
-        this.supply = new MySupply(this);
+        this.supplies = [];
+        this.suppliesDroped=0;
+
+        for(var i=0; i<5;i++)
+        {
+            this.supplies.push(new MySupply(this));
+        }
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -89,16 +95,22 @@ class MyScene extends CGFscene {
             text += " R ";
             keysPressed = true;
             this.vehicle.reset();
+            for(var i=0; i<5;i++)
+                this.supplies[i].reset();
+            this.suppliesDroped=0;
         }
-        if (this.gui.isKeyPressed("KeyP")) {
+        if (this.gui.isKeyPressedDelay("KeyP")) {
             text += " P ";
             keysPressed = true;
             this.vehicle.startAutoPilot(val);
         }
-        if (this.gui.isKeyPressed("KeyL")) {
+        if (this.gui.isKeyPressedDelay("KeyL")) {
             text += " L ";
             keysPressed = true;
-            this.supply.drop(this.vehicle.position);
+            if(this.suppliesDroped<5){
+                this.supplies[this.suppliesDroped].drop(this.vehicle.position);
+                this.suppliesDroped+=1;
+            }
             
         }
         if (keysPressed)
@@ -115,7 +127,9 @@ class MyScene extends CGFscene {
         //To be done...
         this.checkKeys(t);
         this.vehicle.update(t);
-        this.supply.update();
+
+        for(var i=0; i<5;i++)
+            this.supplies[i].update();
     }
 
     
@@ -149,8 +163,8 @@ class MyScene extends CGFscene {
 
         this.vehicle.display(this.scaleFactor);
         
-        if (this.supply.state != SupplyStates.INACTIVE)
-            this.supply.display();
+        for(var i=0; i<5;i++)
+            this.supplies[i].display();
 
 
         this.pushMatrix();
