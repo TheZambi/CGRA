@@ -9,6 +9,8 @@ class MyUnitCubeQuad extends CGFobject {
 		super(scene);
         this.quad = new MyQuad(scene);
 
+        
+        //TEXTURE 0
         this.bottom = new CGFappearance(this.scene);
         this.bottom.setDiffuse(0.6,0.6,0.6,1.0);
         this.bottom.setSpecular(0.6,0.6,0.6,1.0);
@@ -47,21 +49,68 @@ class MyUnitCubeQuad extends CGFobject {
         this.left.setShininess(1.0);
         this.left.loadTexture('images/split_cubemap/left.png');
 
+        //TEXTURE 1
+        this.bottom1 = new CGFappearance(this.scene);
+        this.bottom1.setDiffuse(0.6,0.6,0.6,1.0);
+        this.bottom1.setSpecular(0.6,0.6,0.6,1.0);
+        this.bottom1.setShininess(1.0);
+        this.bottom1.loadTexture('images/splitcubemap/bottom1.png');
+
+        this.back1 = new CGFappearance(this.scene);
+        this.back1.setDiffuse(0.6,0.6,0.6,1.0);
+        this.back1.setSpecular(0.6,0.6,0.6,1.0);
+        this.back1.setShininess(1.0);
+        this.back1.loadTexture('images/splitcubemap/back1.png');
+
+        this.top1 = new CGFappearance(this.scene);
+        this.top1.setDiffuse(0.6,0.6,0.6,1.0);
+        this.top1.setSpecular(0.6,0.6,0.6,1.0);
+        this.top1.setShininess(1.0);
+        this.top1.loadTexture('images/splitcubemap/top1.png');
+
+        this.front1 = new CGFappearance(this.scene);
+        this.front1.setDiffuse(0.6,0.6,0.6,1.0);
+        this.front1.setSpecular(0.6,0.6,0.6,1.0);
+        this.front1.setShininess(1.0);
+        this.front1.loadTexture('images/splitcubemap/front1.png');
     
-	}
+
+        this.right1 = new CGFappearance(this.scene);
+        this.right1.setDiffuse(0.6,0.6,0.6,1.0);
+        this.right1.setSpecular(0.6,0.6,0.6,1.0);
+        this.right1.setShininess(1.0);
+        this.right1.loadTexture('images/splitcubemap/right1.png');
+
+
+        this.left1 = new CGFappearance(this.scene);
+        this.left1.setDiffuse(0.6,0.6,0.6,1.0);
+        this.left1.setSpecular(0.6,0.6,0.6,1.0);
+        this.left1.setShininess(1.0);
+        this.left1.loadTexture('images/splitcubemap/left1.png');
+
+        this.textures = [[this.bottom, this.back, this.top, this.front, this.right, this.left], 
+                         [this.bottom1, this.back1, this.top1, this.front1, this.right1, this.left1]];
+        this.activeTexture = this.textures[0];
+    
+    }
+    
+    selectTexture(id) {
+        this.activeTexture = textures[id];
+    }
     display()
     {   
         this.scene.pushMatrix();
         this.scene.translate(0.0,0.49,0.0);
 
-        //LEFT
-        this.front.apply();
+        //FRONT
+        this.activeTexture[3].apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         this.scene.pushMatrix();
         this.scene.translate(0,0,-0.5);
         this.quad.display();
 
-        this.back.apply();
+        //BACK
+        this.activeTexture[1].apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         this.scene.popMatrix();
         this.scene.pushMatrix();
@@ -70,7 +119,8 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.translate(0,0,-0.5);
         this.quad.display();
 
-        this.left.apply();
+        //LEFT
+        this.activeTexture[5].apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         this.scene.popMatrix();
         this.scene.pushMatrix();
@@ -78,14 +128,15 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.rotate(Math.PI/2, 0,1,0);
         this.quad.display();
         
-        this.right.apply();
+        //RIGHT
+        this.activeTexture[4].apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         this.scene.rotate(Math.PI,0,1,0);
         this.scene.translate(0,0,-1);
         this.quad.display();
         
         //BOTTOM
-        this.bottom.apply();
+        this.activeTexture[0].apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         this.scene.popMatrix();
         this.scene.pushMatrix();
@@ -99,9 +150,8 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.popMatrix();
         
         //TOP
-        this.top.apply();
+        this.activeTexture[2].apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-        //this.bottom.scene.pushMatrix();
         this.scene.translate(0,0.5,0);
         this.scene.rotate(Math.PI/2,1,0,0);
 
