@@ -12,6 +12,7 @@ class MyScene extends CGFscene {
         this.initLights();
         this.speedFactor=0.1;
         this.scaleFactor=1;
+        this.selectedTexture = 0;
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
