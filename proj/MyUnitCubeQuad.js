@@ -95,7 +95,7 @@ class MyUnitCubeQuad extends CGFobject {
     }
     
     selectTexture(id) {
-        this.activeTexture = textures[id];
+        this.activeTexture = this.textures[id];
     }
     display()
     {   

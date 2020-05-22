@@ -42,6 +42,7 @@ class MyScene extends CGFscene {
         this.unitQuad = new MyUnitCubeQuad(this);
         this.vehicle = new MyVehicle(this,20,5);
         this.terrain = new MyTerrain(this);
+        this.billboard = new MyBillboard(this);
 
         this.supplies = [];
         this.suppliesDroped=0;
@@ -78,12 +79,12 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text += " W ";
             keysPressed = true;
-            this.vehicle.accelarate(this.speedFactor);
+            this.vehicle.accelarate(1);
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text += " S ";
             keysPressed = true;
-            this.vehicle.accelarate(-1*this.speedFactor);
+            this.vehicle.accelarate(-1);
         }
         if (this.gui.isKeyPressed("KeyA")) {
             text += " A ";
@@ -102,6 +103,7 @@ class MyScene extends CGFscene {
             for(var i=0; i<5;i++)
                 this.supplies[i].reset();
             this.suppliesDroped=0;
+            this.billboard.update(-0.5);
         }
         if (this.gui.isKeyPressedDelay("KeyP")) {
             text += " P ";
@@ -114,6 +116,7 @@ class MyScene extends CGFscene {
             if(this.suppliesDroped<5){
                 this.supplies[this.suppliesDroped].drop(this.vehicle.position);
                 this.suppliesDroped+=1;
+                this.billboard.update(this.suppliesDroped/5.0)
             }
             
         }
@@ -130,7 +133,7 @@ class MyScene extends CGFscene {
     update(t){
         //To be done...
         this.checkKeys(t);
-        this.vehicle.update(t);
+        this.vehicle.update(t, this.speedFactor);
 
         for(var i=0; i<5;i++)
             this.supplies[i].update();
@@ -185,6 +188,10 @@ class MyScene extends CGFscene {
 
         this.terrain.display();
         this.popMatrix();
+
+        //this.pushMatrix();
+        this.billboard.display();
+        //this.popMatrix();
 
         
         // ---- END Primitive drawing section

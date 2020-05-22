@@ -20,12 +20,15 @@ class MyVehicle extends CGFobject {
         this.position = [0,10,0];
         this.orientation = 0;
         this.rudder_orient = 0;
+        this.previousSpeed = 0;
         
     }
     
     startAutoPilot(t)
     {
+
         if(!this.auto){
+            this.previousSpeed = this.speed;
             this.auto = true;
             this.previousTime = t;
             this.pilotAngle = this.orientation - Math.PI/2;
@@ -43,7 +46,7 @@ class MyVehicle extends CGFobject {
             this.center[1] = 0;
             this.center[2] = 0;
             this.pilotAngle = 0;
-            this.speed = 0;
+            this.speed = this.previousSpeed;
         }
         
     }
@@ -68,7 +71,7 @@ class MyVehicle extends CGFobject {
             this.speed=0;
     }
 
-    update(t)
+    update(t, speedFactor)
     {
         if(this.previousTime==0)
             this.previousTime=t;
@@ -77,9 +80,9 @@ class MyVehicle extends CGFobject {
         if(!this.auto){
             var directionVector = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
 
-            this.position[0] = this.position[0] + directionVector[0] * this.speed;
-            this.position[1] = this.position[1] + directionVector[1] * this.speed;
-            this.position[2] = this.position[2] + directionVector[2] * this.speed;
+            this.position[0] = this.position[0] + directionVector[0] * this.speed*speedFactor;
+            this.position[1] = this.position[1] + directionVector[1] * this.speed*speedFactor;
+            this.position[2] = this.position[2] + directionVector[2] * this.speed*speedFactor;
         }
         else{
             this.rudder_orient = -1;
@@ -99,7 +102,8 @@ class MyVehicle extends CGFobject {
 
             
         }
-        this.flag.update(deltaTime);
+        
+        this.flag.update(this.speed+deltaTime);
     }
 
     reset()
