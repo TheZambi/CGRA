@@ -152,7 +152,6 @@ class MyUnitCubeQuad extends CGFobject {
         //TOP
         this.activeTexture[2].apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-        //this.bottom.scene.pushMatrix();
         this.scene.translate(0,0.5,0);
         this.scene.rotate(Math.PI/2,1,0,0);
 
