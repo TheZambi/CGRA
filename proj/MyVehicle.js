@@ -71,7 +71,7 @@ class MyVehicle extends CGFobject {
             this.speed=0;
     }
 
-    update(t)
+    update(t, speedFactor)
     {
         if(this.previousTime==0)
             this.previousTime=t;
@@ -80,9 +80,9 @@ class MyVehicle extends CGFobject {
         if(!this.auto){
             var directionVector = [Math.sin(this.orientation), 0, Math.cos(this.orientation)];
 
-            // this.position[0] = this.position[0] + directionVector[0] * this.speed;
-            // this.position[1] = this.position[1] + directionVector[1] * this.speed;
-            // this.position[2] = this.position[2] + directionVector[2] * this.speed;
+            this.position[0] = this.position[0] + directionVector[0] * this.speed*speedFactor;
+            this.position[1] = this.position[1] + directionVector[1] * this.speed*speedFactor;
+            this.position[2] = this.position[2] + directionVector[2] * this.speed*speedFactor;
         }
         else{
             this.rudder_orient = -1;

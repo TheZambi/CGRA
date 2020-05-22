@@ -79,12 +79,12 @@ class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
             text += " W ";
             keysPressed = true;
-            this.vehicle.accelarate(this.speedFactor);
+            this.vehicle.accelarate(1);
         }
         if (this.gui.isKeyPressed("KeyS")) {
             text += " S ";
             keysPressed = true;
-            this.vehicle.accelarate(-1*this.speedFactor);
+            this.vehicle.accelarate(-1);
         }
         if (this.gui.isKeyPressed("KeyA")) {
             text += " A ";
@@ -103,6 +103,7 @@ class MyScene extends CGFscene {
             for(var i=0; i<5;i++)
                 this.supplies[i].reset();
             this.suppliesDroped=0;
+            this.billboard.update(-0.5);
         }
         if (this.gui.isKeyPressedDelay("KeyP")) {
             text += " P ";
@@ -132,7 +133,7 @@ class MyScene extends CGFscene {
     update(t){
         //To be done...
         this.checkKeys(t);
-        this.vehicle.update(t);
+        this.vehicle.update(t, this.speedFactor);
 
         for(var i=0; i<5;i++)
             this.supplies[i].update();
