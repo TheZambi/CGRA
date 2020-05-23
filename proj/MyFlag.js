@@ -8,6 +8,8 @@ class MyFlag extends CGFobject{
         this.plane = new MyPlane(this.scene, 64);
 
         this.tex1 = new CGFtexture(this.scene, 'images/Portugal.png');
+        this.tex2 = new CGFtexture(this.scene, 'images/PortugalEspelhado.png');
+
 
         this.shader1 = new CGFshader(this.scene.gl, 'shaders/texture1.vert', 'shaders/texture1.frag');
 
@@ -41,6 +43,8 @@ class MyFlag extends CGFobject{
 
         this.plane.display();
         this.scene.setActiveShader(this.shader2);
+        this.tex2.bind(0);
+
 
 
         this.scene.rotate(Math.PI,0,1,0);

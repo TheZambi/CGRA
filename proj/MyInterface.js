@@ -51,9 +51,15 @@ class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
+        this.gui.add(this.scene, 'displayCilinder').name("Display Cilinder");
+        this.gui.add(this.scene, 'displaySphere').name("Display Sphere");
 
+
+        //Slider elements
         this.gui.add(this.scene, 'speedFactor',0.1,3).name("Speed Factor");
         this.gui.add(this.scene, 'scaleFactor',0.5,3).name("Scale Factor");
+
+        //Drop Down elements
         this.gui.add(this.scene, 'selectedTexture', this.scene.textureIds).name('Selected Texture').onChange(this.scene.updateAppliedTexture.bind(this.scene));
 
         this.initKeys();

@@ -21,7 +21,38 @@ class MyVehicle extends CGFobject {
         this.orientation = 0;
         this.rudder_orient = 0;
         this.previousSpeed = 0;
+
+        this.ballon = new CGFappearance(this.scene);
+        this.ballon.setDiffuse(0.6,0.6,0.6,1.0);
+        this.ballon.setSpecular(0.6,0.6,0.6,1.0);
+        this.ballon.setShininess(1.0);
+        this.ballon.loadTexture('images/balloony.png');
         
+
+        this.rudderTex = new CGFappearance(this.scene);
+        this.rudderTex.setDiffuse(0.6,0.6,0.6,1.0);
+        this.rudderTex.setSpecular(0.6,0.6,0.6,1.0);
+        this.rudderTex.setShininess(1.0);
+        this.rudderTex.loadTexture('images/rudder.png');
+
+        this.motorTex = new CGFappearance(this.scene);
+        this.motorTex.setDiffuse(0.6,0.6,0.6,1.0);
+        this.motorTex.setSpecular(0.6,0.6,0.6,1.0);
+        this.motorTex.setShininess(1.0);
+        this.motorTex.loadTexture('images/motor.png');
+
+        this.sphereCabin = new CGFappearance(this.scene);
+        this.sphereCabin.setDiffuse(0.6,0.6,0.6,1.0);
+        this.sphereCabin.setSpecular(0.6,0.6,0.6,1.0);
+        this.sphereCabin.setShininess(1.0);
+        this.sphereCabin.loadTexture('images/sphereCabin.png');
+
+        this.cilinderCabin = new CGFappearance(this.scene);
+        this.cilinderCabin.setDiffuse(0.6,0.6,0.6,1.0);
+        this.cilinderCabin.setSpecular(0.6,0.6,0.6,1.0);
+        this.cilinderCabin.setShininess(1.0);
+        this.cilinderCabin.loadTexture('images/cilinderCabin.png');
+
     }
     
     startAutoPilot(t)
@@ -118,6 +149,8 @@ class MyVehicle extends CGFobject {
 
     display(scaleFactor) {
         //Changes causeed by the user
+        this.ballon.apply();
+
         this.scene.pushMatrix();
         this.scene.translate(this.position[0],this.position[1],this.position[2]);
         this.scene.rotate(this.orientation,0,1,0);
@@ -133,6 +166,9 @@ class MyVehicle extends CGFobject {
         this.scene.popMatrix();
         
         //Spheres on the edge of the Cabin
+
+        this.sphereCabin.apply();
+
         this.scene.pushMatrix();
 
         this.scene.translate(0,-1,0);
@@ -151,6 +187,8 @@ class MyVehicle extends CGFobject {
         this.scene.popMatrix();
 
         //Cabin
+        this.cilinderCabin.apply();
+
         this.scene.translate(0,0,-0.375);
         this.scene.rotate(Math.PI/2,1,0,0);
         this.scene.scale(0.190,0.95,0.190);
@@ -163,6 +201,8 @@ class MyVehicle extends CGFobject {
         this.scene.rotate(Math.PI/16*this.rudder_orient, 0, 1,0);
 
         //Upper Rudder
+        this.rudderTex.apply();
+
         this.scene.pushMatrix();
         this.scene.scale(1.4,1.4,1.4);
         this.scene.translate(0,0.3,-1.1);
@@ -198,6 +238,7 @@ class MyVehicle extends CGFobject {
         this.propeller.prop_speed += this.speed/20.0 + 0.005;
     
         //Left Engine
+        this.motorTex.apply();
         this.scene.pushMatrix();
         this.scene.translate(-0.151, -1.05, -0.5);
         this.propeller.display();

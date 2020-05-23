@@ -54,39 +54,39 @@ class MyUnitCubeQuad extends CGFobject {
         this.bottom1.setDiffuse(0.6,0.6,0.6,1.0);
         this.bottom1.setSpecular(0.6,0.6,0.6,1.0);
         this.bottom1.setShininess(1.0);
-        this.bottom1.loadTexture('images/splitcubemap/bottom1.png');
+        this.bottom1.loadTexture('images/split_cubemap/bottom1.png');
 
         this.back1 = new CGFappearance(this.scene);
         this.back1.setDiffuse(0.6,0.6,0.6,1.0);
         this.back1.setSpecular(0.6,0.6,0.6,1.0);
         this.back1.setShininess(1.0);
-        this.back1.loadTexture('images/splitcubemap/back1.png');
+        this.back1.loadTexture('images/split_cubemap/back1.png');
 
         this.top1 = new CGFappearance(this.scene);
         this.top1.setDiffuse(0.6,0.6,0.6,1.0);
         this.top1.setSpecular(0.6,0.6,0.6,1.0);
         this.top1.setShininess(1.0);
-        this.top1.loadTexture('images/splitcubemap/top1.png');
+        this.top1.loadTexture('images/split_cubemap/top1.png');
 
         this.front1 = new CGFappearance(this.scene);
         this.front1.setDiffuse(0.6,0.6,0.6,1.0);
         this.front1.setSpecular(0.6,0.6,0.6,1.0);
         this.front1.setShininess(1.0);
-        this.front1.loadTexture('images/splitcubemap/front1.png');
+        this.front1.loadTexture('images/split_cubemap/front1.png');
     
 
         this.right1 = new CGFappearance(this.scene);
         this.right1.setDiffuse(0.6,0.6,0.6,1.0);
         this.right1.setSpecular(0.6,0.6,0.6,1.0);
         this.right1.setShininess(1.0);
-        this.right1.loadTexture('images/splitcubemap/right1.png');
+        this.right1.loadTexture('images/split_cubemap/right1.png');
 
 
         this.left1 = new CGFappearance(this.scene);
         this.left1.setDiffuse(0.6,0.6,0.6,1.0);
         this.left1.setSpecular(0.6,0.6,0.6,1.0);
         this.left1.setShininess(1.0);
-        this.left1.loadTexture('images/splitcubemap/left1.png');
+        this.left1.loadTexture('images/split_cubemap/left1.png');
 
         this.textures = [[this.bottom, this.back, this.top, this.front, this.right, this.left], 
                          [this.bottom1, this.back1, this.top1, this.front1, this.right1, this.left1]];

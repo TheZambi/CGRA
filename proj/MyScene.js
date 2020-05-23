@@ -13,6 +13,10 @@ class MyScene extends CGFscene {
         this.speedFactor=0.1;
         this.scaleFactor=1;
 
+        this.displaySphere = false;
+        this.displayCilinder = false;
+
+
         this.selectedTexture = 0;
         this.textureIds = { 'Default' : 0, 'Sky' : 1 };
 
@@ -165,11 +169,26 @@ class MyScene extends CGFscene {
 
         //This sphere does not have defined texture coordinates
         
-        //this.text.apply();
-        //this.scene.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
-        //this.incompleteSphere.display();
 
-        //this.cylinder.display();
+        if(this.displayCilinder || this.displaySphere)
+        {
+            this.text.apply();
+            this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
+        }
+
+        if(this.displaySphere){  
+            this.pushMatrix();
+            this.translate(0,2,0);   
+            this.incompleteSphere.display();
+            this.popMatrix();
+        }
+
+        if(this.displayCilinder){
+            this.pushMatrix();
+            this.translate(0,2,0);  
+            this.cylinder.display();
+            this.popMatrix();
+        }
   
 
         this.vehicle.display(this.scaleFactor);
@@ -189,9 +208,7 @@ class MyScene extends CGFscene {
         this.terrain.display();
         this.popMatrix();
 
-        //this.pushMatrix();
         this.billboard.display();
-        //this.popMatrix();
 
         
         // ---- END Primitive drawing section
